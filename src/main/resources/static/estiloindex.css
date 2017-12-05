@@ -1,0 +1,53 @@
+
+body{
+	margin:0px;
+}
+body{
+background-color: red;
+
+
+}
+.container{
+background-image: url(pexels-photo-265047.jpeg);  
+
+
+
+}
+
+
+.fondo_encabezado{
+ 
+ position: relative;
+		background-image: url(imagen-fondo.jpeg);
+		height: 100px;
+}
+.encabezado{
+
+padding-right: 0;
+    padding-left: 0;
+}
+img{
+
+position: relative;
+}
+.texto-fondo{
+	left: 40px;		
+	top: 30px;
+	position: absolute;
+
+}
+
+.logo{
+
+	font-family: Spectral;
+	font-weight: bold;
+	color: black;
+}
+
+@font-face {
+    font-family: 'Spectral';
+    font-style: normal;
+    font-weight: 400;
+    src:  url('https://fonts.googleapis.com/css?family=Spectral+SC') ;
+    
+}

@@ -1,0 +1,35 @@
+body {
+	background-color: #E6E0E0;	
+}
+.contenido{
+
+	
+
+}
+
+
+
+.container{
+	    padding-right: 0px;
+    padding-left: 0px;
+}
+
+footer{
+
+ 
+  position: absolute;
+  
+  width: 100%;
+  bottom: 0;
+ 
+}
+
+
+.abajo {
+
+	background-color:#131419!important;
+	
+	bottom: 0;
+	height: 100%;
+}
+
