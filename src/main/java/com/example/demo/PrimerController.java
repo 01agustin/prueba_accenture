@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -36,46 +37,24 @@ public class PrimerController
 	JdbcTemplate jdbcTemplate;
 	
 	
-	@GetMapping("/esqueleto")
-	public static String paginaEsqueleto() {
-		
-		
-		
-		return "esqueleto";
-	}
 	
-	@GetMapping("/home")
-	public static String paginaHome() {
+	@GetMapping("/productos")
+	public static String paginaProductos(Model template,HttpServletRequest request) throws SQLException {
+		
+		String usuarioLogueado = usuarioController.controlarMarquita(request);
+		if ( usuarioLogueado == null ) {
+			return "redirect:/login";
+		}
 		
 		
-		
-		return "home";
-	}
-	@GetMapping("/contacto")
-	public static String paginaContacto() {
-		
-		
-		
-		return "contacto";
-	}
-	
-	
-	@GetMapping("/quienessomos")
-	public static String paginaQuienessomos() {
-		
-		
-		
-		return "quienessomos";
-	}
-	
-		
-	@GetMapping("/tabla")
-	public static String paginaPrincipal(Model template) throws SQLException
-	{
+		HttpSession session = request.getSession();
+		String usuario = (String) session.getAttribute("usuario");
+
 		Connection connection;
 		connection = DriverManager.getConnection(Settings.db_url, Settings.db_user, Settings.db_password);
 		
-		PreparedStatement ps = connection.prepareStatement("SELECT * FROM producto;");
+		PreparedStatement ps = connection.prepareStatement("SELECT * FROM producto WHERE usuario=?;");
+		ps.setString(1, usuario);
 		
 		ResultSet resultado = ps.executeQuery();
 		
@@ -90,46 +69,52 @@ public class PrimerController
 										resultado.getInt("stock"),
 										resultado.getInt("precio_costo"),
 										resultado.getInt("precio_venta"),
-										resultado.getString("fecha_de_ingreso"));
-			System.out.println();
+										resultado.getString("fecha_de_ingreso"),
+										resultado.getString("categoria"));
+			System.out.println(resultado.getString("id"));
 			listaProducto.add( miSabor );
 		}
 		
 		template.addAttribute("listaProducto", listaProducto);
 		System.out.println(listaProducto);
-		return "nuevoejemplo";
+		
+		return "productos";
 	}
 	
-	@GetMapping("/admin/editar")
-	public static String paginaAdmin(HttpServletRequest request)
-	{
-		
-		if(controlarMarquita(request)) {
-			return "admin";
-			
-		}
-		else {
-			return "redirect:/admin/login";
-		}
+	@GetMapping("/home")
+	public static String paginaHome() {
 		
 		
-	
+		
+		return "home";
 	}
 	
-	@GetMapping("/admin/login")
-	public static String paginaPruebab()
-	{
-		return "adminlogin";
-	}
-	@GetMapping("/admin/logout")
-	public static String logoutAdmin( HttpServletRequest request)
-	{
+	
+	
+	@GetMapping("/quienessomos")
+	public static String paginaQuienessomos() {
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("marquita", null);
 		
-		return "redirect:/";
+		
+		return "quienessomos";
 	}
+	@GetMapping("/contacto")
+	public static String paginaContacto() {
+		
+		
+		
+		return "contacto";
+	}
+	@GetMapping("/registrar")
+	public static String paginaRegistro() {
+		
+		
+		
+		return "registro";
+	}
+	
+	
+		
 	
 	
 	public static boolean controlarMarquita(HttpServletRequest request) {
@@ -149,106 +134,16 @@ public class PrimerController
 	
 	
 	
-	@PostMapping("/admin/procesarLogin")
-	public static String procesarLoginAdmi(@RequestParam String usuario , 
-										   @RequestParam  String password,
-										   HttpServletRequest request)
-	{
-		if(usuario.equals("admin") && password.equals("comunidad_it")) {
-			//aceptado
-			
-			HttpSession session = request.getSession();
-			session.setAttribute("marquita", "AUTORIZADO");
-			
-			
-			
-			
-			
-			return "redirect:/admin/editar";
-		} else {
-			//rechazado
-			return "adminLogin";
-		}
+	
 		
 		
 		 // TODO ;poner algo aca
-	}
-
-	@GetMapping("/enviar")
-	public static String paginaPrincipa(Model template) throws SQLException
-	{
-		Connection connection;
-		connection = DriverManager.getConnection(Settings.db_url, Settings.db_user, Settings.db_password);
-		
-		PreparedStatement ps = connection.prepareStatement("SELECT * FROM producto;");
-		
-		ResultSet resultado = ps.executeQuery();
-		
-		ArrayList<Producto> listaProducto;
-		listaProducto= new ArrayList<Producto>();
-		
-		while( resultado.next() ) {
-			//template.addAttribute("nombreSabor", resultado.getString("nombre"));
-			Producto miSabor = new Producto(	resultado.getInt("id"),
-										resultado.getString("nombre"), 
-										resultado.getString("Proveedor"),
-										resultado.getInt("stock"),
-										resultado.getInt("precio_costo"),
-										resultado.getInt("precio_venta"),
-										resultado.getString("fecha_de_ingreso"));
-			
-			listaProducto.add( miSabor );
-		}
-		
-		template.addAttribute("listaSabores", listaProducto);
-		return "pruebatabla";
-	}
+	
 
 	
-	@GetMapping("/layaout")
-	public static String paginaLayout()
-	{
-		
-		return "index";
-	}
 	
-	@GetMapping("/sucursales")
-	public static String paginaSucursales()
-	{
-		
-		return "sucursales";
-	}
 
-/*	@GetMapping("/sabores")
-	public static String paginaSabores(Model template) throws SQLException
-	{
-		/* Connection connection;
-		connection = DriverManager.getConnection(Settings.db_url, Settings.db_user, Settings.db_password);
-		
-		PreparedStatement ps = connection.prepareStatement("SELECT * FROM producto;");
-		
-		ResultSet resultado = ps.executeQuery();
-		
-		ArrayList<Producto> listaProducto;
-		listaProducto = new ArrayList<Producto>();
-		
-		while( resultado.next() ) {
-			//template.addAttribute("nombreSabor", resultado.getString("nombre"));
-			Producto miProducto = new Producto(	resultado.getInt("id"),
-					resultado.getString("nombre"), 
-					resultado.getString("Proveedor"),
-					resultado.getInt("stock"),
-					resultado.getInt("precio_costo"),
-					resultado.getInt("precio_venta"),
-					resultado.getString("fecha_de_ingreso"));
-			
-			listaProducto.add( miProducto);
-		}
-		
-		template.addAttribute("listaProducto", listaProducto);
-
-		return "tables";
-	} */
+	
 	
 	@GetMapping("/nosotros")
 	public static String paginaNosotros(Model template)
@@ -257,45 +152,47 @@ public class PrimerController
 		return "nosotros";
 	}
 	
-	@GetMapping("/contacto")
-	public static String PaginaContacto()
-	{
-		return "contacto"; // Formulario vacio
-	}
+	
 
 	@PostMapping("/recibirContacto")
-	public static String procesarInfoContacto(	@RequestParam String nombre, 
+	public static String procesarInfoContacto(	@RequestParam String nombre,
+												@RequestParam String apellido,
 												@RequestParam String comentario,
 												@RequestParam String email,
+												@RequestParam String telefono,
 												Model template) throws SQLException {
-		if (nombre.equals("") || comentario.equals("") || email.equals("")) { // si hubo algun error
+		if (nombre.equals("") || comentario.equals("") || email.equals("")|| telefono.equals("")|| apellido.equals("")) { // si hubo algun error
 			// Cargar formulario de vuelta
 			template.addAttribute("mensajeError", "No puede haber campos vacios");
 			template.addAttribute("nombreAnterior", nombre);
 			template.addAttribute("emailAnterior", email);
 			template.addAttribute("comentarioAnterior", comentario);
+			template.addAttribute("telefonoAnterior", telefono);
+			template.addAttribute("apellidooAnterior", apellido);
 
 			return "contacto"; // Formulario vacio (quizas se enoje, pero bue)
 		} else {
-			/*enviarCorreo(
+			enviarCorreo(
 					"no-responder@pepito.com", 
-					"francisco.j.laborda@gmail.com", 
-					"Mensaje de contacto de " + nombre, 
-					"nombre: " + nombre + "  email: " + email + " comentario: " + comentario);
+					"agustin_9_d@hotmail.com", 
+					"Mensaje de contacto de " + nombre+ " "+apellido, 
+					"nombre: " + nombre +" "+apellido+ "  email: " + email + " comentario: " + comentario);
 			enviarCorreo(
 					"no-responder@pepito.com",
 					email,
 					"Gracias por contactarte!", 
 					"Recibimos tu consulta, nos vamos a contactar con vos");
-			*/
+			
 			Connection connection;
 			connection = DriverManager.getConnection(Settings.db_url, Settings.db_user, Settings.db_password);
 			
 			PreparedStatement ps = 
-					connection.prepareStatement("INSERT INTO contactos(nombre, email, comentario) VALUES(?,?,?);");
+					connection.prepareStatement("INSERT INTO contactos(nombre, apellido, telefono, email, comentario) VALUES(?,?,?,?,?);");
 			ps.setString(1, nombre);
-			ps.setString(2, email);
-			ps.setString(3, comentario);
+			ps.setString(2, apellido);
+			ps.setString(3, email);
+			ps.setString(4, telefono);
+			ps.setString(5, comentario);
 
 			ps.executeUpdate();
 			
@@ -324,6 +221,37 @@ public class PrimerController
           System.out.println(ex.getMessage()); ;
         }
     }
+    @PostMapping("/recibirusuario")
+	public static String procesarInfoUsuario(@RequestParam String usuario, @RequestParam String password,
+			@RequestParam String email, Model template) throws SQLException {
+		if (usuario.equals("") || password.equals("") || email.equals("")) {// si hubo algun error
+			// cargar formulario de vuelta
+			template.addAttribute("mensajeError", "No puede haber campos vacios");
+			template.addAttribute("usuarioAnterior", usuario);
+			template.addAttribute("passAnterior", password);
+			template.addAttribute("emailAnterior", email);
+
+			return "home";
+		} else {
+
+			enviarCorreo(email, "agustin_9_d@hotmail.com", "Mensaje de contacto de:" + usuario,
+					"usuario:" + usuario + "  email:" + email);
+			enviarCorreo("agustin_9_d@hotmail.com", email, " Gracias por contactarte!", " GRACIAS POR REGISTRARTE");
+
+			Connection connection;
+			connection = DriverManager.getConnection(Settings.db_url, Settings.db_user, Settings.db_password);
+			PreparedStatement qs = connection
+					.prepareStatement("INSERT INTO usuarios(email,usuario,password)  VALUES(?,?,?);");
+			qs.setString(1, email);
+			qs.setString(2, usuario);
+			qs.setString(3, password);
+
+			qs.executeUpdate();
+
+			return "redirect:/login";
+		}
+	}
+   
 	
 	
 	

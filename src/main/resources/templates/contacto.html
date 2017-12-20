@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+  <html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="esqueleto">
+      
+      <head>
+      	
+	<link rel="stylesheet" href="estiloscontacto.css"></link>
+
+      </head>
+
+
+<div  layout:fragment="contenido">
+		
+
+		<div class="container">
+			
+		<div class="row">
+			
+		
+	<div class="col-md-0 col-lg-1">
+	</div>
+	<div class="col-lg-6 col-md-12">
+	<p  th:text="${mensajeError}"> </p>
+            <div class="well well-sm">
+                <form action="/recibirAyuda" class="form-horizontal" method="post">
+                    <fieldset>
+                        <legend class="text-center ">Contactenos</legend>
+
+                        <div class="form-group">
+                            <i class="fa fa-user bigicon"></i>
+                            
+                                <input id="fname" name="nombre" type="text" placeholder="nombre" th:value="${nombreAnterior}" ></input>
+                            
+                        </div>
+                        <div class="form-group">
+                          <i class="fa fa-user bigicon"></i>
+                            
+                                <input id="lname" name="apellido" type="text" placeholder="apellido" th:value="${apellidoAnterior}" ></input>
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <i class="fa fa-envelope-o bigicon"></i>
+                            
+                                <input id="email" name="email" type="email" placeholder="Email " th:value="${emailAnterior}" ></input>
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <i class="fa fa-phone-square bigicon"></i>
+                            
+                                <input id="phone" name="telefono" type="text" placeholder="telefono" th:value="${telefonoAnterior}" ></input>
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <i class="fa fa-pencil-square-o bigicon"></i>
+                            
+                                <textarea  	 class="form-control" id="message" name="comentario" th:value="${comentarioAnterior}" placeholder="deje su comentario o mensaje lo recibiremos y contestaremos antes de 2 dias" ></textarea>
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        
+        
+     <div class="col-lg-5 col-md-12 infod">
+     <br>	</br>	
+     <h3>contactenos por estos medios</h3>
+     <div><span>mail</span><p> agustin_9_d@dhotmail.com</p></div><br>	</br>
+     <div >	<span>telefono</span><p>1167467905</p>	</div>
+     
+     </div>
+
+<br></br>
+<br></br>
+
+<br></br>
+
+
+		</div>
+
+
+
+
+
+		</div>
+				
+
+
+</div>
+
+
+
+      </html>

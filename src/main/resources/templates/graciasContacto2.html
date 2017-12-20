@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+  <html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="esqueleto2">
+      
+      <head>
+      	
+	<link rel="stylesheet" href="estiloscontacto.css"></link>
+
+      </head>
+
+
+<div  layout:fragment="card-header">
+		<h3 class="titulodeproducto"> Esta seguro de elimnar el producto de nombre <span th:text="${nombre}"></span> </h3>
+</div>
+<div  layout:fragment="card-body">
+		
+		
+		<div class="container">
+			
+		<div class="row">
+			
+		
+	<div class="col-3">
+	</div>
+	
+	
+	<div   class="col-6">
+	
+	<h2> Recibimos tu mensaje , reponderemos a la brevedad</h2>
+	
+	</div>
+	
+
+		
+
+
+
+		</div>
+
+
+
+
+
+		</div>
+				
+		</div>
+		 
+		
+		
+		
+		
+		
+		
+	             <form action="/paseeliminar" method="get">
+ 						
+ 				 		<input type="hidden" name="d" th:value="producto.id"></input>
+  						<span class="peque"><input type="submit" value="eliminar"></input></span>
+					</form>
+					
+					<form action="/paseeditar" method="get">
+ 						
+ 				 		<input type="hidden" name="id" th:value="producto.id"></input>
+  						<span class="peque"><input type="submit" value="editar"></input></span>
+					</form>
+	            
+
+<div  layout:fragment="card-footer">
+		<p> esto es el footer</p>
+</div>
+
+
+
+
+
+
+      </html>

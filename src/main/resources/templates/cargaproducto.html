@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="esqueleto2">
+
+<head>
+
+<link rel="stylesheet" href="estiloscontacto.css"></link>
+
+</head>
+
+
+<div layout:fragment="card-header">
+	<h3 class="titulodeproducto">Cargar producto nuevo</h3>
+</div>
+<div layout:fragment="card-body">
+
+	<div class="container">
+	
+	<div class="row">
+	
+	<div class="col-lg-2 col-md-0"></div>
+	<div class="col-lg-6 col-md-12"><form action="/cargarProducto" class="form-horizontal" method="post">
+	
+		<fieldset>
+			<legend class="text-center ">Informacion de producto</legend>
+
+			<div class="form-group">
+				<span>ingrese nombre de producto</span>  <input id="fname"
+					name="nombreProducto" type="text"
+					placeholder="ingrese nombre de producto  ej:cuchara"
+					th:value="${nomproAnterior}"></input>
+
+			</div>
+			<div class="form-group">
+				<span>ingrese proveedor</span>  <input
+					id="lname" name="proveedor" type="text"
+					placeholder="ingrese proveedor ej:tramontina" th:value="${proveedorAnterior}"></input>
+
+			</div>
+
+			<div class="form-group">
+				<span>ingrese cantidad de stock</span>  <input id="email"
+					name="stock" type="number" placeholder="stock ej:25"
+					th:value="${stockAnterior}"></input>
+
+			</div>
+
+			<div class="form-group">
+				<span>ingrese precio de costo</span>  <input id="phone"
+					name="preciocost" type="number"
+					placeholder="ingrese precio de costo ej:30"
+					th:value="${preciocostAnterior}"></input>
+
+			</div>
+
+			<div class="form-group">
+				<span>ingrese precio de venta</span> <input
+					class="form-control" id="message" name="precioventa" type="number"
+					th:value="${precioventaAnterior}"
+					placeholder="ingrese precio de venta ej:30"></input>
+
+			</div>
+			<div class="form-group">
+				<span>ingrese fecha de ingreso de esto modo dia/mes/a&ntilde;o</span>  <input id="lname"
+					name="fecha_de_ingreso" type="date" placeholder="d/m/a ej 12/02/98"
+					th:value="${fecha_de_ingresoAnterior}"></input>
+
+			</div>
+
+			<div class="form-group">
+				<span>ingrese categoria</span>  <input id="lname"
+					name="categoria" type="text" placeholder="ingrese categotoria ej:ventas"
+					th:value="${categoriaAnterior}"></input>
+
+			</div>
+			<div class="form-group">
+				<div class="col-md-6 text-center">
+					<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+				</div>
+			</div>
+		</fieldset>
+	</form></div>
+	</div>
+	
+	</div>
+</div>
+
+
+
+
+<div layout:fragment="card-footer">
+	<p>esto es el footer</p>
+</div>
+
+
+
+
+
+
+</html>

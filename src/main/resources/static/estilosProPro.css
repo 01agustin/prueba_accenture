@@ -52,3 +52,20 @@ p{
 	font-size: 10px;
 	width: 7px;
 }
+.card-header{
+	    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.a{
+	background: #c0c0c0;
+    
+}
+.b{
+	    background: #a7868657;
+	
+}
+.titulodeproducto{
+	color: cornflowerblue;
+}

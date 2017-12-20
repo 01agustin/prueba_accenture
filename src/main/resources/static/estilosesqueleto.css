@@ -1,26 +1,24 @@
+
+
 body {
 	background-color: #E6E0E0;	
 }
-.contenido{
-
-	
-
-}
 
 
 
-.container{
+.container-fluid{
 	    padding-right: 0px;
     padding-left: 0px;
+    width: 100%;
 }
 
 footer{
 
- 
-  position: absolute;
-  
+ 	
+position:fixed;
+   left:0px;
+   bottom:0px;  
   width: 100%;
-  bottom: 0;
  
 }
 
@@ -29,7 +27,6 @@ footer{
 
 	background-color:#131419!important;
 	
-	bottom: 0;
 	height: 100%;
 }
 

@@ -8,10 +8,11 @@ public class Producto {
 	int precio_costo;
 	int precio_venta;
 	String fecha_de_ingreso;
+	String categoria;
 
 
 	
-	public Producto(int id, String nombre, String t, int d, int s,  int a,String r){
+	public Producto(int id, String nombre, String t, int d, int s, int a,String r,String m){
 		this.id = id;
 		this.nombre = nombre;
 		this.proveedor = t;
@@ -19,7 +20,15 @@ public class Producto {
 		this.precio_costo = s;
 		this.precio_venta = a;
 		this.fecha_de_ingreso = r;
+		this.categoria = m;
 		
+	}
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	public String getProveedor() {

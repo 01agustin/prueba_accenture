@@ -1,15 +1,16 @@
-.contenido{
 
-height: 800px;
-background: url(pexels-photo-583847.jpeg);
-
-}	
-
+body{
+	background-image: url("pexels-photo-459653.jpeg") ;
+	    background-repeat: no-repeat;
+	        background-position: center;
+	    
+	
+}
 
 .qs  {
 
 		margin-top:40px;
-		margin-left: 40px;
+		
 		margin-bottom: 40px;
 		 background: #8e898933;
     color: #101010;

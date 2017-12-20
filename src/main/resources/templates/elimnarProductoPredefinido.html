@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+  <html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="esqueleto2">
+      
+      <head>
+      	
+	<link rel="stylesheet" href="estiloscontacto.css"></link>
+
+      </head>
+
+
+<div  layout:fragment="card-header">
+		<h3 class="titulodeproducto"> Esta seguro de elimnar el producto de nombre <span th:text="${nombre}"></span> </h3>
+</div>
+<div  layout:fragment="card-body">
+		
+		<div class="container"> 
+		<div class="row">
+		<div class="col-lg-3 col-md-0"></div>
+		
+		
+		<div class="col-lg-6 col-md-12" >
+		<p>Nombre de productos:  <span th:text="${nombre}"></span> </p><br></br>
+		<p>Nombre de proveedor:  <span th:text="${proveedor}"></span> </p><br></br>
+		<p>stock:  <span th:text="${stock}"></span> </p><br></br>
+		<p>precio de costo:  <span th:text="${precio_costo}"></span> </p><br></br>
+		<p>precio de venta:  <span th:text="${precio_venta}"></span> </p><br></br>
+		<p>Nombre de categoria:  <span th:text="${categoria}"></span> </p><br></br>
+		<p>fecha de ingreso:  <span th:text="${fecha_de_ingreso}"></span> </p><br></br>
+		<form action="/paseeliminar" method="post">
+ 						
+ 				 		<input type="hidden" name="d"  th:value="${id}"></input>
+  						<span class="peque"><input type="submit" value="eliminar"></input></span>
+					</form>
+		</div>
+		
+		
+		
+		
+		</div>
+		
+		
+		
+		</div>
+		</div>
+		 
+		
+		
+		
+		
+		
+		
+	             <form action="/paseeliminar" method="get">
+ 						
+ 				 		<input type="hidden" name="d" th:value="producto.id"></input>
+  						<span class="peque"><input type="submit" value="eliminar"></input></span>
+					</form>
+					
+					<form action="/paseeditar" method="get">
+ 						
+ 				 		<input type="hidden" name="id" th:value="producto.id"></input>
+  						<span class="peque"><input type="submit" value="editar"></input></span>
+					</form>
+	            
+
+<div  layout:fragment="card-footer">
+		<p> esto es el footer</p>
+</div>
+
+
+
+
+
+
+      </html>

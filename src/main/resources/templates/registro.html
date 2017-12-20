@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+  <html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="esqueleto">
+      
+      <head>
+      	
+	<link rel="stylesheet" href="estiloscontacto.css"></link>
+
+      </head>
+
+
+<div  layout:fragment="contenido">
+		
+
+		<div class="container">
+			
+		<div class="row">
+			
+		
+	<div class="col-md-0 col-lg-1">
+	</div>
+	<div class="col-lg-6 col-md-12">
+	<p  th:text="${mensajeError}"> </p>
+            <div class="well well-sm">
+                <form action="/recibirusuario" class="form-horizontal" method="post">
+                    <fieldset>
+                        <legend class="text-center ">Registrar</legend>
+
+                        <div class="form-group">
+                            <i class="fa fa-user bigicon"></i>
+                            
+                                <input id="email" name="email" type="email" placeholder="Email" th:value="${emailAnterior}" ></input>
+                            
+                        </div>
+                        <div class="form-group">
+                          <i class="fa fa-user bigicon"></i>
+                            
+                                <input id="email" name="usuario" type="text" placeholder="Usuario" th:value="${usuarioAnterior}" ></input>
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <i class="fa fa-lock bigicon"></i>
+                            
+                                <input id="password" name="password" type="password" placeholder="Contrase&ntilde;a" th:value="${passAnterior}" ></input>
+                            
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-lock bigicon"></i>
+                            
+                                <input id="repetir-password" name="repetir-password" type="password" placeholder="Repita contrase&ntilde;a" th:value="${passAnterior}" ></input>
+                            
+                        </div>
+
+                        
+
+                        
+
+                        <div class="form-group">
+                            <div class="col-md-6 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        
+   
+
+<br></br>
+<br></br>
+
+<br></br>
+
+
+		</div>
+
+
+
+
+
+		</div>
+				
+
+
+</div>
+
+
+
+      </html>

@@ -1,50 +1,49 @@
-.banner{
-width: 		;
+@import url('https://fonts.googleapis.com/css?family=Audiowide|Gravitas+One|Roboto');
 
 
-}
 
 
-.container{
+
+body{
+	background-image: url("pexels-photo-583847.jpeg") ;
+	    background-repeat: no-repeat;
+	        background-position: center;
+	    
 	
 }
 
-img{
 
-
-	    
-width: 100%;
-position: relative;
-
+h2{
+	color: white;
+	font-family:Audiowide;
+	text-align: center;
 }
-
 p {
 
 		
 
-	position: absolute;
 	    bottom: 50%;
 	      background: #8e898933;
     color: #101010;
-	
-	width: 80%;
+	width: 100%;
 	height: 40%;
 	text-align: center;
 }
 
 .info{
-	top: 0;		
+	padding-top :10%;
 
-	padding-left: 10%;
+
+	
+	font-size: 1.5rem;
 }
 .invitacion{
 
-	position: absolute;
-	    bottom: 40%;
+	    padding-top: 15px;
 	      background: #8e898933;
     color: #101010;
 	
-	width: 80%;
+	width: 100%;
 	height: 40%;
 	text-align: center;
 }

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="esqueleto2">
+
+<head>
+
+<link rel="stylesheet" href="/estilosProPro.css"></link>
+ 
+ <style type="text/css">
+ .cajamaster{
+ 
+ background-color: red;
+ 
+ margin: 15px 15px 15px 15px;
+ float: left;
+ height: 40px;
+ }
+ .cs{
+ 	float:left;
+ 
+ }
+ 
+ </style>
+</head>
+
+
+<div layout:fragment="card-header">
+
+<div class="container-fluid">
+
+<div class="row">
+
+<div class="col-4 a"><h3 class="titulodeproducto">PROVEEDORES</h3></div>
+
+
+<div class="col-2"> <h3>Opciones:</h3><br></br>
+
+ 
+</div>
+<div class="col-6"><span style="font-size: 13px">tocar VER para mostrar los productos de ese proveedor</span>
+ <br></br>
+
+ <span style="font-size: 13px">tocar ELEMINAR para eliminar los productos de ese proveedor</span>
+</div>
+
+
+
+
+</div>
+</div>
+
+	
+</div>
+<div layout:fragment="card-body">
+
+	<div class="container">
+
+		<div class="row">
+
+							 <div class="col-md-12 col-lg-4" th:each="categoria : ${listaCategorias}">
+				 <div class="card" style="width: 15rem;">
+  <img class="card-img-top" src="new-product.png" alt="Card image cap"> </img>
+  <div class="card-body">
+    <h4 class="card-title" th:text="${categoria}">Card title</h4>
+
+    
+    <form action="/precesarsolicituddeProveedor" method="post" style="margin-bottom: 2px;">
+    <input  th:value="${categoria}"  type="hidden" name="categoria"  ></input>
+    <input type="submit" class="btn btn-primary" value="ver"></input></form>
+    <form action="/eliminarProveedor" method="post">
+    <input  th:value="${categoria}"  type="hidden" name="categoria"  ></input>
+    <input type="submit" class="btn btn-primary" value="eliminar"></input></form>
+  </div>
+</div>
+				 
+				 </div>
+		
+				
+			
+		</div>
+
+	</div>
+</div>
+
+
+
+
+<div layout:fragment="card-footer">
+	<p>esto es el footer</p>
+</div>
+
+
+
+
+
+
+</html>

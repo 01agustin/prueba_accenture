@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+  <html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="esqueleto2">
+      
+      <head>
+      	
+	<link rel="stylesheet" href="/estiloscontacto.css"></link>
+
+      </head>
+
+
+<div  layout:fragment="card-header">
+		<h3 class="titulodeproducto"> Todos los productos</h3>
+</div>
+<div  layout:fragment="card-body">
+		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	              <thead>
+	                <tr>
+	                  <th>Nombre</th>
+	                  <th>proveedor</th>
+	                  <th>stock</th>
+	                  <th>precio de costo</th>
+	                  <th>precio de venta</th>
+	                  <th>fecha de ingreso</th>
+	                  <th>categoria</th>
+	                  <th>opciones</th>
+	                </tr>
+	              </thead>
+	              <tfoot>
+	                <tr>
+	                  <th>Nombre</th>
+	                  <th>proveedor</th>
+	                  <th>stock</th>
+	                  <th>precio de costo</th>
+	                  <th>precio de venta</th>
+	                  <th>fecha de ingreso</th>
+	                  <th>categoria</th>
+	                  <th>opciones</th>
+	                </tr>
+	              </tfoot>
+	              <tbody>
+	                <tr th:each="producto : ${listaProducto}">
+		 	          <td th:text="${producto.nombre}"></td>
+	                  <td th:text="${producto.proveedor}"></td>
+	                  <td th:text="${producto.stock}"></td>
+	                  <td th:text="${producto.precio_costo}"></td>
+	                  <td th:text="${producto.precio_venta}"></td>
+	                  <td th:text="${producto.fecha_de_ingreso}"></td>
+	                  <td th:text="${producto.categoria}"></td>
+	                  <td> <form action="/paseeliminar" method="get">
+ 						
+ 				 		<input type="hidden" name="d" th:value="${producto.id}"></input>
+  						<span class="peque"><input type="submit" value="eliminar"></input></span>
+					</form>
+					
+					<form action="/editarPro" method="get">
+ 						
+ 				 		<input type="hidden" name="d" th:value="${producto.id}"></input>
+  						<span class="peque"><input type="submit" value="editar"></input></span>
+					</form> </td>
+	                </tr>
+	               
+	              </tbody>
+	            </table>
+</div>
+<div  layout:fragment="card-footer">
+		<p> esto es el footer</p>
+</div>
+
+
+
+
+
+
+      </html>

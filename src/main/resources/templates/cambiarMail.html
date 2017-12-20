@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="esqueleto2">
+
+<head>
+
+<link rel="stylesheet" href="estiloscontacto.css"></link>
+
+</head>
+
+
+<div layout:fragment="card-header">
+	<h3 class="titulodeproducto">Cambiar Mail</h3>
+</div>
+<div layout:fragment="card-body">
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-lg-2 col-md-0"></div>
+			<div class="col-lg-6 col-md-12">
+			<p th:text="${mensajeError}"></p>
+				<form action="/cambiarMail" class="form-horizontal" method="post">
+
+					<fieldset>
+						<legend class="text-center ">Informacion de usuario</legend>
+
+						<div class="form-group">
+
+							<p>
+								Usuario <span th:text="${usuario}"></span>
+								<input type="hidden"  name="usuario" th:value="${usuario}"></input>
+							</p>
+
+
+
+						</div>
+						
+						<div class="form-group">
+							<span>ingrese contrase&ntilde;a</span>
+							<input id="email" name="pass" type="text"
+								 ></input>
+
+						</div>
+
+						<div class="form-group">
+							<span>MAIL actual </span>
+								 <span th:text="${mail}"></span>
+								<input type="hidden"  name="mail" th:value="${mail}"></input>
+							
+
+						</div>
+
+						<div class="form-group">
+							<span>ingrese nuevo mail<span
+								></span>
+							</span> <input class="form-control" id="message" name="mailNuevo"
+								type="Email" 
+							></input>
+
+						</div>
+						
+
+						
+						<div class="form-group">
+							<div class="col-md-6 text-center">
+								<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+
+
+<div layout:fragment="card-footer">
+	<p>esto es el footer</p>
+</div>
+
+
+
+
+
+
+</html>
